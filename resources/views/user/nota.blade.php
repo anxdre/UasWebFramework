@@ -89,6 +89,10 @@
                 <td colspan="4">Grand Total</td>
                 <td>Rp. {{ $transaction->total + $transaction->pajak }}</td>
             </tr>
+            <tr>
+                <td colspan="4">Point Gained</td>
+                <td>{{ $transaction->poin_transaksi }} Pts</td>
+            </tr>
         </tfoot>
     </table>
     <div id="back-btn" style="display: flex; justify-content:center;padding: 20px">
