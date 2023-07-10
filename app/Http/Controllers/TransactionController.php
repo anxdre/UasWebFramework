@@ -17,7 +17,7 @@ class TransactionController extends Controller
         $total   = 0;
         $success = false;
         DB::beginTransaction();
-        
+
         try {
             $transaction = Transaction::create([
                 'user_id'        => Auth::id(),
@@ -40,7 +40,7 @@ class TransactionController extends Controller
             }
 
             $transaction->pajak          = ($total * 11) / 100;
-            $transaction->poin_transaksi = $total % 100000;
+            $transaction->poin_transaksi = $total / 100000;
             $transaction->total          = $total;
 
             $transaction->save();
