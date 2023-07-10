@@ -63,6 +63,12 @@
                     </div>
                 </div>
                 <!-- Header Top social End -->
+                <!-- Header Top Category Toggle Start -->
+                <a href="#ec-mobile-sidebar" class="ec-header-btn ec-sidebar-toggle d-lg-none">
+                    <img src="{{ asset('') }}assets/images/icons/category-icon.svg" class="svg_img header_svg"
+                         alt="icon"/>
+                </a>
+                <!-- Header Top Category Toggle End -->
                 <!-- Header Top Message Start -->
                 <div class="col text-center header-top-center">
                     <div class="header-top-message text-upper">
@@ -73,6 +79,16 @@
                 <!-- Header Top Language Currency -->
                 <div class="col header-top-right d-none d-lg-block">
                     <div class="header-top-lan-curr d-flex justify-content-end">
+                        <!-- Currency Start -->
+                        <div class="header-top-curr dropdown">
+                            <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
+                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
+                            <ul class="dropdown-menu">
+                                <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
+                                <li><a class="dropdown-item" href="#">EUR €</a></li>
+                            </ul>
+                        </div>
+                        <!-- Currency End -->
                         <!-- Language Start -->
                         <div class="header-top-lan dropdown">
                             <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
@@ -85,104 +101,118 @@
                         <!-- Language End -->
 
                     </div>
-                </div>
-                <!-- Header Top Language Currency -->
-                <!-- Header Top responsive Action -->
-                <div class="col d-lg-none ">
-                    <div class="ec-header-bottons">
-                        <!-- Header User Start -->
-                        <div class="ec-header-user dropdown">
-                            <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
-                                    src="{{asset('')}}assets/images/icons/user.svg" class="svg_img header_svg" alt=""/></button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                <li><a class="dropdown-item" href="login.html">Login</a></li>
-                            </ul>
-                        </div>
-                        <!-- Header User End -->
-                        <!-- Header Cart Start -->
-                        <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
-                            <div class="header-icon"><img src="{{asset('')}}assets/images/icons/wishlist.svg"
-                                                          class="svg_img header_svg" alt=""/></div>
-                            <span class="ec-header-count">4</span>
-                        </a>
-                        <!-- Header Cart End -->
-                        <!-- Header Cart Start -->
-                        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-                            <div class="header-icon"><img src="{{asset('')}}assets/images/icons/cart.svg"
-                                                          class="svg_img header_svg" alt=""/></div>
-                            <span class="ec-header-count cart-count-lable">3</span>
-                        </a>
-                        <!-- Header Cart End -->
-                        <!-- Header menu Start -->
-                        <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
-                            <img src="{{asset('')}}assets/images/icons/menu.svg" class="svg_img header_svg" alt="icon"/>
-                        </a>
-                        <!-- Header menu End -->
-                    </div>
-                </div>
-                <!-- Header Top responsive Action -->
-            </div>
-        </div>
-    </div>
-    <!-- Ec Header Top  End -->
-    <!-- Ec Header Bottom  Start -->
-    <div class="ec-header-bottom d-none d-lg-block">
-        <div class="container position-relative">
-            <div class="row">
-                <div class="ec-flex">
-                    <!-- Ec Header Logo Start -->
-                    <div class="align-self-center">
-                        <div class="header-logo">
-                            <a href="/"><img src="{{asset('')}}assets/images/logo/logo.png" alt="Site Logo"/><img
-                                    class="dark-logo" src="{{asset('')}}assets/images/logo/dark-logo.png" alt="Site Logo"
-                                    style="display: none;"/></a>
-                        </div>
-                    </div>
-                    <!-- Ec Header Logo End -->
-
-                    <!-- Ec Header Search Start -->
-                    <div class="align-self-center">
-                        <div class="header-search">
-                            <form class="ec-btn-group-form" action="#">
-                                <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                                <button class="submit" type="submit"><img src="assets/images/icons/search.svg"
-                                                                          class="svg_img header_svg" alt=""/></button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Ec Header Search End -->
-
-                    <!-- Ec Header Button Start -->
-                    <div class="align-self-center">
+                    <!-- Header Top Language Currency -->
+                    <!-- Header Top responsive Action -->
+                    <div class="col d-lg-none ">
                         <div class="ec-header-bottons">
-
                             <!-- Header User Start -->
                             <div class="ec-header-user dropdown">
                                 <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
-                                        src="{{asset('')}}assets/images/icons/user.svg" class="svg_img header_svg" alt=""/></button>
+                                        src="assets/images/icons/user.svg" class="svg_img header_svg"
+                                        alt=""/></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                    <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                    @if (Auth::check())
+                                        <li><span class="dropdown-item">POIN SAYA : <br>
+                                                {{ Auth::user()->membership->jumlah_poin }}</span></li>
+                                        <li><a class="dropdown-item" href="{{ route('history') }}">History</a></li>
+                                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                    @else
+                                        <li><a class="dropdown-item" href="/register">Register</a></li>
+                                        <li><a class="dropdown-item" href="/login">Login</a></li>
+                                    @endif
                                 </ul>
                             </div>
                             <!-- Header User End -->
-                            <!-- Header wishlist Start -->
-                            <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
-                                <div class="header-icon"><img src="{{asset('')}}assets/images/icons/wishlist.svg"
-                                                              class="svg_img header_svg" alt=""/></div>
-                                <span class="ec-header-count">4</span>
-                            </a>
-                            <!-- Header wishlist End -->
                             <!-- Header Cart Start -->
-                            <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                            {{-- <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
+                            <div class="header-icon"><img src="assets/images/icons/wishlist.svg"
+                                    class="svg_img header_svg" alt="" /></div>
+                            <span class="ec-header-count">4</span>
+                        </a> --}}
+                            <!-- Header Cart End -->
+                            <!-- Header Cart Start -->
+                            <a @auth href="#ec-side-cart" @else href="{{ route('login') }}" @endauth
+                            class="ec-header-btn ec-side-toggle">
                                 <div class="header-icon"><img src="{{asset('')}}assets/images/icons/cart.svg"
                                                               class="svg_img header_svg" alt=""/></div>
-                                <span class="ec-header-count cart-count-lable">3</span>
+                                {{-- <span class="ec-header-count ec-cart-count cart-count-lable">3</span> --}}
                             </a>
                             <!-- Header Cart End -->
+                            <!-- Header menu Start -->
+                            <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
+                                <img src="{{asset('')}}assets/images/icons/menu.svg" class="svg_img header_svg"
+                                     alt="icon"/>
+                            </a>
+                            <!-- Header menu End -->
+                        </div>
+                    </div>
+                    <!-- Header Top responsive Action -->
+                </div>
+            </div>
+        </div>
+        <!-- Ec Header Top  End -->
+        <!-- Ec Header Bottom  Start -->
+        <div class="ec-header-bottom d-none d-lg-block">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="ec-flex">
+                        <!-- Ec Header Logo Start -->
+                        <div class="align-self-center">
+                            <div class="header-logo">
+                                <a href="/"><img src="{{asset('')}}assets/images/logo/logo-8.png"
+                                                 alt="Site Logo"/><img class="dark-logo"
+                                                                       src="{{asset('')}}assets/images/logo/dark-logo-8.png"
+                                                                       alt="Site Logo"
+                                                                       style="display: none;"/></a>
+                            </div>
+                        </div>
+                        <!-- Ec Header Logo End -->
+
+                        <!-- Ec Header Search Start -->
+                        <div class="align-self-center">
+                            <div class="header-search">
+                                <form class="ec-btn-group-form" action="#">
+                                    <input class="form-control" placeholder="Enter Your Product Name..."
+                                           type="text">
+                                    <button class="submit" type="submit"><img
+                                            src="{{asset('')}}assets/images/icons/search.svg" class="svg_img header_svg"
+                                            alt=""/></button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Ec Header Search End -->
+
+                        <!-- Ec Header Button Start -->
+                        <div class="align-self-center">
+                            <div class="ec-header-bottons">
+                                <!-- Header User Start -->
+                                <div class="ec-header-user dropdown">
+                                    <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
+                                            src="{{asset('')}}assets/images/icons/user.svg" class="svg_img header_svg"
+                                            alt=""/></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        @if (Auth::check())
+                                            <li><span class="dropdown-item">POIN SAYA : <br>
+                                                    {{ Auth::user()->membership->jumlah_poin }}</span></li>
+                                            <li><a class="dropdown-item" href="{{ route('history') }}">History</a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                        @else
+                                            <li><a class="dropdown-item" href="/register">Register</a></li>
+                                            <li><a class="dropdown-item" href="/login">Login</a></li>
+                                        @endif
+                                    </ul>
+                                </div>
+                                <a @auth href="#ec-side-cart" @else href="{{ route('login') }}" @endauth
+                                class="ec-header-btn ec-side-toggle">
+                                    <div class="header-icon">
+                                        <img src="{{asset('')}}assets/images/icons/cart.svg"
+                                             class="svg_img header_svg" alt=""/>
+                                        <span class="ec-header-count cart-count-lable"></span>
+                                    </div>
+                                </a>
+                                <!-- Header Cart End -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -198,8 +228,8 @@
                 <!-- Ec Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="/"><img src="{{asset('')}}assets/images/logo/logo.png" alt="Site Logo"/><img
-                                class="dark-logo" src="{{asset('')}}assets/images/logo/dark-logo.png" alt="Site Logo"
+                        <a href="/"><img src="{{asset('')}}assets/images/logo/logo-8.png" alt="Site Logo"/><img
+                                class="dark-logo" src="{{asset('')}}assets/images/logo/dark-logo-8.png" alt="Site Logo"
                                 style="display: none;"/></a>
                     </div>
                 </div>
@@ -208,8 +238,9 @@
                 <div class="col">
                     <div class="header-search">
                         <form class="ec-btn-group-form" action="#">
-                            <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                            <button class="submit" type="submit"><img src="assets/images/icons/search.svg"
+                            <input class="form-control" placeholder="Enter Your Product Name..."
+                                   type="text">
+                            <button class="submit" type="submit"><img src="{{asset('')}}assets/images/icons/search.svg"
                                                                       class="svg_img header_svg" alt="icon"/></button>
                         </form>
                     </div>
@@ -233,92 +264,128 @@
                                         <ul class="d-block">
                                             <li class="menu_title"><a href="javascript:void(0)">Classic
                                                     Variation</a></li>
-                                            <li><a href="shop-left-sidebar-col-3.html">Left sidebar 3 column</a>
+                                            <li><a href="shop-left-sidebar-col-3.html">Left sidebar 3
+                                                    column</a>
                                             </li>
-                                            <li><a href="shop-left-sidebar-col-4.html">Left sidebar 4 column</a>
+                                            <li><a href="shop-left-sidebar-col-4.html">Left sidebar 4
+                                                    column</a>
                                             </li>
-                                            <li><a href="shop-right-sidebar-col-3.html">Right sidebar 3 column</a>
+                                            <li><a href="shop-right-sidebar-col-3.html">Right sidebar 3
+                                                    column</a>
                                             </li>
-                                            <li><a href="shop-right-sidebar-col-4.html">Right sidebar 4 column</a>
+                                            <li><a href="shop-right-sidebar-col-4.html">Right sidebar 4
+                                                    column</a>
                                             </li>
                                             <li><a href="shop-full-width.html">Full width 4 column</a></li>
                                         </ul>
                                         <ul class="d-block">
                                             <li class="menu_title"><a href="javascript:void(0)">Classic
                                                     Variation</a></li>
-                                            <li><a href="shop-banner-left-sidebar-col-3.html">Banner left sidebar 3
+                                            <li><a href="shop-banner-left-sidebar-col-3.html">Banner left
+                                                    sidebar 3
                                                     column</a></li>
-                                            <li><a href="shop-banner-left-sidebar-col-4.html">Banner left sidebar 4
+                                            <li><a href="shop-banner-left-sidebar-col-4.html">Banner left
+                                                    sidebar 4
                                                     column</a></li>
-                                            <li><a href="shop-banner-right-sidebar-col-3.html">Banner right sidebar
+                                            <li><a href="shop-banner-right-sidebar-col-3.html">Banner right
+                                                    sidebar
                                                     3 column</a></li>
-                                            <li><a href="shop-banner-right-sidebar-col-4.html">Banner right sidebar
+                                            <li><a href="shop-banner-right-sidebar-col-4.html">Banner right
+                                                    sidebar
                                                     4 column</a></li>
-                                            <li><a href="shop-banner-full-width.html">Banner Full width 4 column</a>
+                                            <li><a href="shop-banner-full-width.html">Banner Full width 4
+                                                    column</a>
                                             </li>
                                         </ul>
                                         <ul class="d-block">
                                             <li class="menu_title"><a href="javascript:void(0)">Columns
                                                     Variation</a></li>
-                                            <li><a href="shop-full-width-col-3.html">3 Columns full width</a></li>
-                                            <li><a href="shop-full-width-col-4.html">4 Columns full width</a></li>
-                                            <li><a href="shop-full-width-col-5.html">5 Columns full width</a></li>
-                                            <li><a href="shop-full-width-col-6.html">6 Columns full width</a></li>
-                                            <li><a href="shop-banner-full-width-col-3.html">Banner 3 Columns</a>
+                                            <li><a href="shop-full-width-col-3.html">3 Columns full width</a>
+                                            </li>
+                                            <li><a href="shop-full-width-col-4.html">4 Columns full width</a>
+                                            </li>
+                                            <li><a href="shop-full-width-col-5.html">5 Columns full width</a>
+                                            </li>
+                                            <li><a href="shop-full-width-col-6.html">6 Columns full width</a>
+                                            </li>
+                                            <li><a href="shop-banner-full-width-col-3.html">Banner 3
+                                                    Columns</a>
                                             </li>
                                         </ul>
                                         <ul class="d-block">
-                                            <li class="menu_title"><a href="javascript:void(0)">List Variation</a>
+                                            <li class="menu_title"><a href="javascript:void(0)">List
+                                                    Variation</a>
                                             </li>
-                                            <li><a href="shop-list-left-sidebar.html">Shop left sidebar</a></li>
-                                            <li><a href="shop-list-right-sidebar.html">Shop right sidebar</a></li>
-                                            <li><a href="shop-list-banner-left-sidebar.html">Banner left sidebar</a>
+                                            <li><a href="shop-list-left-sidebar.html">Shop left sidebar</a>
+                                            </li>
+                                            <li><a href="shop-list-right-sidebar.html">Shop right sidebar</a>
+                                            </li>
+                                            <li><a href="shop-list-banner-left-sidebar.html">Banner left
+                                                    sidebar</a>
                                             </li>
                                             <li><a href="shop-list-banner-right-sidebar.html">Banner right
                                                     sidebar</a></li>
-                                            <li><a href="shop-list-full-col-2.html">Full width 2 columns</a></li>
+                                            <li><a href="shop-list-full-col-2.html">Full width 2 columns</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <ul class="ec-main-banner w-100">
                                             <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img
-                                                        class="img-responsive" src="assets/images/menu-banner/1.jpg"
-                                                        alt=""></a></li>
+                                                        class="img-responsive"
+                                                        src="assets/images/menu-banner/1.jpg"
+                                                        alt=""></a>
+                                            </li>
                                             <li><a class="p-0" href="shop-left-sidebar-col-4.html"><img
-                                                        class="img-responsive" src="assets/images/menu-banner/2.jpg"
-                                                        alt=""></a></li>
+                                                        class="img-responsive"
+                                                        src="assets/images/menu-banner/2.jpg"
+                                                        alt=""></a>
+                                            </li>
                                             <li><a class="p-0" href="shop-right-sidebar-col-3.html"><img
-                                                        class="img-responsive" src="assets/images/menu-banner/3.jpg"
-                                                        alt=""></a></li>
+                                                        class="img-responsive"
+                                                        src="assets/images/menu-banner/3.jpg"
+                                                        alt=""></a>
+                                            </li>
                                             <li><a class="p-0" href="shop-right-sidebar-col-4.html"><img
-                                                        class="img-responsive" src="assets/images/menu-banner/4.jpg"
-                                                        alt=""></a></li>
+                                                        class="img-responsive"
+                                                        src="assets/images/menu-banner/4.jpg"
+                                                        alt=""></a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="javascript:void(0)">Products</a>
                                 <ul class="sub-menu">
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product page
+                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product
+                                            page
                                             <i class="ecicon eci-angle-right"></i></a>
                                         <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-left-sidebar.html">Product left sidebar</a></li>
-                                            <li><a href="product-right-sidebar.html">Product right sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product 360
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-360-left-sidebar.html">360 left sidebar</a></li>
-                                            <li><a href="product-360-right-sidebar.html">360 right sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product video
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-video-left-sidebar.html">Video left sidebar</a>
+                                            <li><a href="product-left-sidebar.html">Product left sidebar</a>
                                             </li>
-                                            <li><a href="product-video-right-sidebar.html">Video right sidebar</a>
+                                            <li><a href="product-right-sidebar.html">Product right sidebar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product
+                                            360
+                                            <i class="ecicon eci-angle-right"></i></a>
+                                        <ul class="sub-menu sub-menu-child">
+                                            <li><a href="product-360-left-sidebar.html">360 left sidebar</a>
+                                            </li>
+                                            <li><a href="product-360-right-sidebar.html">360 right sidebar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product
+                                            video
+                                            <i class="ecicon eci-angle-right"></i></a>
+                                        <ul class="sub-menu sub-menu-child">
+                                            <li><a href="product-video-left-sidebar.html">Video left
+                                                    sidebar</a>
+                                            </li>
+                                            <li><a href="product-video-right-sidebar.html">Video right
+                                                    sidebar</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -326,7 +393,8 @@
                                             gallery
                                             <i class="ecicon eci-angle-right"></i></a>
                                         <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-gallery-left-sidebar.html">Gallery left sidebar</a>
+                                            <li><a href="product-gallery-left-sidebar.html">Gallery left
+                                                    sidebar</a>
                                             </li>
                                             <li><a href="product-gallery-right-sidebar.html">Gallery right
                                                     sidebar</a></li>
@@ -360,26 +428,37 @@
                                             Confirmation
                                             <i class="ecicon eci-angle-right"></i></a>
                                         <ul class="sub-menu sub-menu-child">
-                                            <li><a href="email-template-confirm-1.html">Mail Confirmation 1</a></li>
-                                            <li><a href="email-template-confirm-2.html">Mail Confirmation 2</a></li>
-                                            <li><a href="email-template-confirm-3.html">Mail Confirmation 3</a></li>
-                                            <li><a href="email-template-confirm-4.html">Mail Confirmation 4</a></li>
-                                            <li><a href="email-template-confirm-5.html">Mail Confirmation 5</a></li>
+                                            <li><a href="email-template-confirm-1.html">Mail Confirmation 1</a>
+                                            </li>
+                                            <li><a href="email-template-confirm-2.html">Mail Confirmation 2</a>
+                                            </li>
+                                            <li><a href="email-template-confirm-3.html">Mail Confirmation 3</a>
+                                            </li>
+                                            <li><a href="email-template-confirm-4.html">Mail Confirmation 4</a>
+                                            </li>
+                                            <li><a href="email-template-confirm-5.html">Mail Confirmation 5</a>
+                                            </li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Mail Reset
+                                    <li class="dropdown position-static"><a href="javascript:void(0)">Mail
+                                            Reset
                                             password
                                             <i class="ecicon eci-angle-right"></i></a>
                                         <ul class="sub-menu sub-menu-child">
-                                            <li><a href="email-template-forgot-password-1.html">Reset password 1</a>
+                                            <li><a href="email-template-forgot-password-1.html">Reset password
+                                                    1</a>
                                             </li>
-                                            <li><a href="email-template-forgot-password-2.html">Reset password 2</a>
+                                            <li><a href="email-template-forgot-password-2.html">Reset password
+                                                    2</a>
                                             </li>
-                                            <li><a href="email-template-forgot-password-3.html">Reset password 3</a>
+                                            <li><a href="email-template-forgot-password-3.html">Reset password
+                                                    3</a>
                                             </li>
-                                            <li><a href="email-template-forgot-password-4.html">Reset password 4</a>
+                                            <li><a href="email-template-forgot-password-4.html">Reset password
+                                                    4</a>
                                             </li>
-                                            <li><a href="email-template-forgot-password-5.html">Reset password 5</a>
+                                            <li><a href="email-template-forgot-password-5.html">Reset password
+                                                    5</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -420,7 +499,8 @@
                                             <li><a href="user-invoice.html">Invoice</a></li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Construction
+                                    <li class="dropdown position-static"><a
+                                            href="javascript:void(0)">Construction
                                             pages
                                             <i class="ecicon eci-angle-right"></i></a>
                                         <ul class="sub-menu sub-menu-child">
@@ -434,8 +514,10 @@
                                         <a href="javascript:void(0)">Vendor Catalog pages
                                             <i class="ecicon eci-angle-right"></i></a>
                                         <ul class="sub-menu sub-menu-child">
-                                            <li><a href="catalog-single-vendor.html">Catalog Single Vendor</a></li>
-                                            <li><a href="catalog-multi-vendor.html">Catalog Multi Vendor</a></li>
+                                            <li><a href="catalog-single-vendor.html">Catalog Single Vendor</a>
+                                            </li>
+                                            <li><a href="catalog-multi-vendor.html">Catalog Multi Vendor</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -444,8 +526,10 @@
                                 <ul class="sub-menu">
                                     <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
                                     <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                                    <li><a href="blog-detail-left-sidebar.html">Blog detail left sidebar</a></li>
-                                    <li><a href="blog-detail-right-sidebar.html">Blog detail right sidebar</a></li>
+                                    <li><a href="blog-detail-left-sidebar.html">Blog detail left sidebar</a>
+                                    </li>
+                                    <li><a href="blog-detail-right-sidebar.html">Blog detail right sidebar</a>
+                                    </li>
                                     <li><a href="blog-full-width.html">Blog full width</a></li>
                                     <li><a href="blog-detail-full-width.html">Blog detail full width</a></li>
                                 </ul>
@@ -503,7 +587,8 @@
                                             column</a></li>
                                     <li><a href="shop-banner-right-sidebar-col-4.html">Banner right sidebar 4
                                             column</a></li>
-                                    <li><a href="shop-banner-full-width.html">Banner Full width 4 column</a></li>
+                                    <li><a href="shop-banner-full-width.html">Banner Full width 4 column</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -521,14 +606,16 @@
                                 <ul class="sub-menu">
                                     <li><a href="shop-list-left-sidebar.html">Shop left sidebar</a></li>
                                     <li><a href="shop-list-right-sidebar.html">Shop right sidebar</a></li>
-                                    <li><a href="shop-list-banner-left-sidebar.html">Banner left sidebar</a></li>
-                                    <li><a href="shop-list-banner-right-sidebar.html">Banner right sidebar</a></li>
+                                    <li><a href="shop-list-banner-left-sidebar.html">Banner left sidebar</a>
+                                    </li>
+                                    <li><a href="shop-list-banner-right-sidebar.html">Banner right sidebar</a>
+                                    </li>
                                     <li><a href="shop-list-full-col-2.html">Full width 2 columns</a></li>
                                 </ul>
                             </li>
-                            <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img class="img-responsive"
-                                                                                        src="assets/images/menu-banner/1.jpg"
-                                                                                        alt=""></a>
+                            <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img
+                                        class="img-responsive" src="assets/images/menu-banner/1.jpg"
+                                        alt=""></a>
                             </li>
                         </ul>
                     </li>
@@ -554,8 +641,10 @@
                             </li>
                             <li><a href="javascript:void(0)">Product gallery</a>
                                 <ul class="sub-menu">
-                                    <li><a href="product-gallery-left-sidebar.html">Gallery left sidebar</a></li>
-                                    <li><a href="product-gallery-right-sidebar.html">Gallery right sidebar</a></li>
+                                    <li><a href="product-gallery-left-sidebar.html">Gallery left sidebar</a>
+                                    </li>
+                                    <li><a href="product-gallery-right-sidebar.html">Gallery right sidebar</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li><a href="product-full-width.html">Product full width</a></li>
@@ -577,11 +666,16 @@
                             </li>
                             <li><a href="javascript:void(0)">Mail Reset password</a>
                                 <ul class="sub-menu">
-                                    <li><a href="email-template-forgot-password-1.html">Reset password 1</a></li>
-                                    <li><a href="email-template-forgot-password-2.html">Reset password 2</a></li>
-                                    <li><a href="email-template-forgot-password-3.html">Reset password 3</a></li>
-                                    <li><a href="email-template-forgot-password-4.html">Reset password 4</a></li>
-                                    <li><a href="email-template-forgot-password-5.html">Reset password 5</a></li>
+                                    <li><a href="email-template-forgot-password-1.html">Reset password 1</a>
+                                    </li>
+                                    <li><a href="email-template-forgot-password-2.html">Reset password 2</a>
+                                    </li>
+                                    <li><a href="email-template-forgot-password-3.html">Reset password 3</a>
+                                    </li>
+                                    <li><a href="email-template-forgot-password-4.html">Reset password 4</a>
+                                    </li>
+                                    <li><a href="email-template-forgot-password-5.html">Reset password 5</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li><a href="javascript:void(0)">Mail Promotional</a>
@@ -715,79 +809,98 @@
 <!-- Header End  -->
 
 <!-- ekka Cart Start -->
-<div class="ec-side-cart-overlay"></div>
-<div id="ec-side-cart" class="ec-side-cart">
-    <div class="ec-cart-inner">
-        <div class="ec-cart-top">
-            <div class="ec-cart-title">
-                <span class="cart_title">My Cart</span>
-                <button class="ec-close">×</button>
+@auth
+    <!-- Ekka Cart Start -->
+    <div class="ec-side-cart-overlay"></div>
+    <div id="ec-side-cart" class="ec-side-cart">
+        <div class="ec-cart-inner">
+            <div class="ec-cart-top">
+                <div class="ec-cart-title">
+                    <span class="cart_title">My Cart</span>
+                    <button class="ec-close">×</button>
+                </div>
+                <ul class="eccart-pro-items">
+                    @php
+                        $subtotal = 0;
+                    @endphp
+                    @forelse ($carts as $cart)
+                        @php
+                            $subtotal += $cart->product->price * $cart->quantity;
+                            $images = json_decode($cart->product->images);
+                        @endphp
+                        <li>
+                            <a href="#" class="sidecart_pro_img"><img
+                                    src="{{ isset($images) ? asset("$images[0]") : '' }}" alt="product"></a>
+                            <div class="ec-pro-content">
+                                <a href="#" class="cart_pro_title">{{ $cart->product->name }}</a>
+                                <span class="cart-price"><span>Rp. {{ $cart->product->price }}</span> x
+                                        {{ $cart->quantity }}</span>
+                                {{-- <div class="qty-plus-minus">
+                                    <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                </div> --}}
+                                <a href="{{ route('deleteCart', $cart->id) }}" class="remove">×</a>
+                            </div>
+                        </li>
+                    @empty
+                    @endforelse
+                    {{-- <li>
+                    <a href="product-left-sidebar.html" class="sidecart_pro_img"><img
+                            src="assets/images/product-image/96_1.jpg" alt="product"></a>
+                    <div class="ec-pro-content">
+                        <a href="product-left-sidebar.html" class="cart_pro_title">Running & Trekking Shoes -
+                            White</a>
+                        <span class="cart-price"><span>$150.00</span> x 1</span>
+                        <div class="qty-plus-minus">
+                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                        </div>
+                        <a href="#" class="remove">×</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="product-left-sidebar.html" class="sidecart_pro_img"><img
+                            src="assets/images/product-image/111_1.jpg" alt="product"></a>
+                    <div class="ec-pro-content">
+                        <a href="product-left-sidebar.html" class="cart_pro_title">Rose Gold Peacock Earrings</a>
+                        <span class="cart-price"><span>$950.00</span> x 1</span>
+                        <div class="qty-plus-minus">
+                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                        </div>
+                        <a href="#" class="remove">×</a>
+                    </div>
+                </li> --}}
+                </ul>
             </div>
-            <ul class="eccart-pro-items">
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                            src="assets/images/product-image/6_1.jpg" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                        <span class="cart-price"><span>$76.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                            src="assets/images/product-image/12_1.jpg" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                        <span class="cart-price"><span>$64.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                            src="assets/images/product-image/3_1.jpg" alt="product"></a>
-                    <div class="ec-pro-content">
-                        <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                        <span class="cart-price"><span>$59.00</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
-                        </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="ec-cart-bottom">
-            <div class="cart-sub-total">
-                <table class="table cart-table">
-                    <tbody>
-                    <tr>
-                        <td class="text-left">Sub-Total :</td>
-                        <td class="text-right">$300.00</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">VAT (20%) :</td>
-                        <td class="text-right">$60.00</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">Total :</td>
-                        <td class="text-right primary-color">$360.00</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="cart_btn">
-                <a href="cart.html" class="btn btn-primary">View Cart</a>
-                <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+            <div class="ec-cart-bottom">
+                <div class="cart-sub-total">
+                    @php
+                        $ppn = ($subtotal * 11) / 100;
+                    @endphp
+                    <table class="table cart-table">
+                        <tbody>
+                        <tr>
+                            <td class="text-left">Sub-Total :</td>
+                            <td class="text-right">Rp. {{ $subtotal }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">PPN (11%) :</td>
+                            <td class="text-right">Rp. {{ $ppn }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Total :</td>
+                            <td class="text-right primary-color">Rp. {{ $subtotal + $ppn }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart_btn">
+                    {{-- <a href="{{route('cart.store')}}" class="btn btn-primary">Simpan Cart</a> --}}
+                    <a href="{{ route('checkout') }}" class="btn btn-secondary">Checkout</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- Ekka Cart End -->
+@endauth
 <!-- ekka Cart End -->
 
 <!-- Sart Single product -->
@@ -884,12 +997,8 @@
                                             <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
                                         </div>
                                         <div class="ec-single-cart ">
-                                            <button class="btn btn-primary">Add To Cart</button>
-                                        </div>
-                                        <div class="ec-single-wishlist">
-                                            <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                                    src="assets/images/icons/wishlist.svg" class="svg_img pro_svg"
-                                                    alt=""/></a>
+                                            <a href="{{route('add.to.cart', $data->id)}}" class="btn btn-primary">Add To Cart</a>
+{{--                                            <button class="btn btn-primary">Add To Cart</button>--}}
                                         </div>
                                         <div class="ec-single-quickview">
                                             <a href="#" class="ec-btn-group quickview" data-link-action="quickview"
@@ -1066,11 +1175,12 @@
                 <div class="row">
                     <div class="col-sm-12 col-lg-3 ec-footer-contact">
                         <div class="ec-footer-widget">
-                            <div class="ec-footer-logo"><a href="/"><img src="{{asset('')}}assets/images/logo/footer-logo.png"
-                                                                         alt=""><img class="dark-footer-logo"
-                                                                                     src="{{asset('')}}assets/images/logo/dark-logo.png"
-                                                                                     alt="Site Logo"
-                                                                                     style="display: none;"/></a></div>
+                            <div class="ec-footer-logo"><a href="/"><img
+                                        src="{{asset('')}}assets/images/logo/footer-logo.png"
+                                        alt=""><img class="dark-footer-logo"
+                                                    src="{{asset('')}}assets/images/logo/dark-logo.png"
+                                                    alt="Site Logo"
+                                                    style="display: none;"/></a></div>
                             <h4 class="ec-footer-heading">Contact us</h4>
                             <div class="ec-footer-links">
                                 <ul class="align-items-center">
@@ -1293,7 +1403,7 @@
                                     <input class="qty-input" type="text" name="ec_qtybtn" value="1"/>
                                 </div>
                                 <div class="ec-quickview-cart ">
-                                    <button class="btn btn-primary"><img src="assets/images/icons/cart.svg"
+                                    <button class="btn btn-primary"><img src="{{asset('')}}assets/images/icons/cart.svg"
                                                                          class="svg_img pro_svg" alt=""/> Add To Cart
                                     </button>
                                 </div>
@@ -1322,12 +1432,7 @@
             </div>
             <div class="ec-nav-panel-icons">
                 <a href="/" class="ec-header-btn"><img src="{{asset('')}}assets/images/icons/home.svg"
-                                                                class="svg_img header_svg" alt="icon"/></a>
-            </div>
-            <div class="ec-nav-panel-icons">
-                <a href="wishlist.html" class="ec-header-btn"><img src="{{asset('')}}assets/images/icons/wishlist.svg"
-                                                                   class="svg_img header_svg" alt="icon"/><span
-                        class="ec-cart-noti">4</span></a>
+                                                       class="svg_img header_svg" alt="icon"/></a>
             </div>
             <div class="ec-nav-panel-icons">
                 <a href="login.html" class="ec-header-btn"><img src="{{asset('')}}assets/images/icons/user.svg"
@@ -1354,7 +1459,8 @@
 <!-- Cart Floating Button -->
 <div class="ec-cart-float">
     <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-        <div class="header-icon"><img src="{{asset('')}}assets/images/icons/cart.svg" class="svg_img header_svg" alt=""/></div>
+        <div class="header-icon"><img src="{{asset('')}}assets/images/icons/cart.svg" class="svg_img header_svg"
+                                      alt=""/></div>
         <span class="ec-cart-count cart-count-lable">3</span>
     </a>
 </div>
@@ -1383,6 +1489,9 @@
         new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
     }
 </script>
+@include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@11'])
+
+@stack('scripts')
 <!-- Main Js -->
 <script src="{{asset('')}}assets/js/vendor/index.js"></script>
 <script src="{{asset('')}}assets/js/main.js"></script>

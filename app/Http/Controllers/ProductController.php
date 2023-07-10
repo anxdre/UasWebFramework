@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Brand;
@@ -93,8 +95,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        $carts = Cart::whereUserId(Auth::id())->get();
         $data = Product::find($id);
-        return view('user.detailproduct', compact('data'));
+        return view('user.detailproduct', compact('data','carts'));
     }
 
     /**

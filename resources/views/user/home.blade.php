@@ -675,7 +675,7 @@
                                                     <span class="new-price">Rp. {{ $data->price }}</span>
                                                 </div>
                                                 <div class="ec-spe-pro-btn">
-                                                    <a href="#" class="btn btn-lg btn-primary">Add To Cart</a>
+                                                    <a href="{{route('add.to.cart', $data->id)}}" class="btn btn-lg btn-primary">Add To Cart</a>
                                                 </div>
                                                 <div class="ec-spe-pro-progress">
                                                     <span class="ec-spe-pro-progress-desc"><span>Already Sold:
